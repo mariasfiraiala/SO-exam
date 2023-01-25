@@ -48,7 +48,7 @@
    * Acțiunea dorită este lansată.
 
    Astfel, după cum se observă, aplicația din user space trigger-uiește o acțiune care conduce la implicarea kernel-ului.
-   Enforcement-ul distincției dintre kernel space și user space este asigurată de modurile de privilegiu ale procesorului, marcate printr-un bit.
+   Enforcement-ul distincției dintre kernel space și user space este asigurat de modurile de privilegiu ale procesorului, marcate printr-un bit.
    Acesta este salvat în registrul `CPL` pe `x86` sau `CPSR` pe `ARM`.
 
 1. Ce este o bibliotecă?
@@ -63,7 +63,7 @@
 
 1. Care este asocierea apel de bibliotecă / apel de sistem?
 
-   (Nu înțeleg întrebarea)
+   Asocierea dintre un apel de bibliotecă și un apel de sistem este aceea că un apel de bibliotecă poate rezulta într-un apel de sistem.
 
 1. Ce este entry point-ul într-un executabil?
 
@@ -72,7 +72,7 @@
 
 1. Care este rolul bibliotecii standard C (libc)?
 
-   `libc` oferă o suită de funcții, atât pentru folosire integrală în user space (precum `strlen()`), cât și pentru interacțiunea cu kernel-ul (wrapper-e precum `printf()` sau `scanf()`).
+   `libc` oferă o suită de funcții, atât pentru folosirea integrală în user space (precum `strlen()`), cât și pentru interacțiunea cu kernel-ul (wrapper-e precum `printf()` sau `scanf()`).
 
 1. Ce acțiuni se pot executa doar în mod privilegiat?
 
@@ -103,11 +103,11 @@
 
 1. Care sunt avantajele unui sistem de operare de tip microkernel?
 
-   Securiatatea: kernel-ul fiind mult mai mic, suprafața de atac scade; un serviciu de sistem poate fi repornit fără un reboot al întregului sistem de operare.
+   Securitatea: kernel-ul fiind mult mai mic, suprafața de atac scade; un serviciu de sistem poate fi repornit fără un reboot al întregului sistem de operare.
 
 1. Care tip de sistem de operare are mai multe apeluri de sistem?
 
-   Un sistem de operare de tip monolitic, pentru că invocarea componentelor sale esențiale se face prin syscall; pe când în cazul unui sistem de tip microkernel, comunicare se realizează în user space, fără a fi nevoie de syscall-urile specifice.
+   Un sistem de operare de tip monolitic, pentru că invocarea componentelor sale esențiale se face prin syscall; pe când în cazul unui sistem de tip microkernel, comunicarea se realizează în user space, fără a fi nevoie de syscall-urile specifice.
 
 1. Care este avantajul folosirii mașinilor virtuale din perspectiva securității?
 
@@ -115,7 +115,7 @@
 
 1. Ce este o bibliotecă statică? Ce este o bibliotecă dinamică?
 
-   O bibliotecă statică este una care ale cărei simboluri sunt copiate direct în executabilul programului, la link time.
+   O bibliotecă statică este una ale cărei simboluri sunt copiate direct în executabilul programului, la link time.
 
    O bibliotecă dinamică este una ale cărei simboluri sunt aduse în executabil la load time, printr-un segment partajat.
 
