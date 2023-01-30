@@ -80,7 +80,7 @@
 
    `read()` întoarce numărul de bytes citiți, 0 pentru EOF sau -1 în caz de eroare.
 
-   `write()` întoarce numărul de bytes scriși, 0 sau -1 în caz de eroare.
+   `write()` întoarce numărul de bytes scriși sau -1 în caz de eroare.
 
 ### 18. Ce operații se pot face pe fișiere?
 
@@ -90,9 +90,13 @@
 
    Modifică cursorul: `open()`, `read()`, `write()`, `lseek()`.
 
+   Nu modifică cursorul: `ftruncate()`
+
 ### 20. Ce operații asupra fișierelor modifică/nu modifică dimensiunea fișierului?
 
    Modifică dimensiunea: `open()`, `write()`, `truncate()`.
+
+   Nu modifică dimensiunea: `read()`, `lseek()`
 
 ### 21. Unde este reținută valoarea cursorului de fișiere (file pointer) și unde este reținută dimensiunea fișierului?
 
@@ -165,7 +169,7 @@
 
 ### 35. Ce garanții ni se oferă în momentul în care apelul send() se întoarce în user space?
 
-   Că datele au fost copiate într-un buffer de send.
+   Că datele în întregime sau doar o parte  (de aceea `send()` trebuie făcut într-un loop pentru a asigura că s-au trimis toate datele) au fost copiate într-un buffer de send.
 
 ### 36. Cu ce diferă afișarea folosind printf() față de folosirea write()?
 
@@ -201,7 +205,7 @@
 
 ### 43. Cum se modifica tabelul de file descriptori după open() si dup()? Este echivalent cu doua apeluri open()?
 
-   `open()` creează un nou file descriptor și un nou open file structure în FDT, pe când `dup()` creează un nou file descriptor și duplică open file structure-ul de la vechiul fd pe care îl primește ca argument.
+   `open()` creează un nou file descriptor și un nou open file structure în FDT, pe când `dup()` creează un nou file descriptor și point-ează către același open file structure de la vechiul fd, pe care îl primește ca argument, incrementând numărul de referințe (link-uri) din structură.
    `dup()` nu este neapărat echivalent cu două apeluri `open()` pentru că **nu** creează un open file structure; el doar copiază referința dintr-o parte a vectorului de fd-uri în alta.
 
 ### 44. Ce fișiere sunt deschise, în general, la crearea unui proces nou?
