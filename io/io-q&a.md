@@ -114,7 +114,7 @@
 
 1. Ce întoarce o operație asincronă?
 
-   Operațiile asincrone întorc o promisiune, faptul că la un moment dat, operația va fi satisfăcută.
+   Operațiile asincrone întorc un cod de eroare, 0 sau -1.
 
 1. Ce întoarce o operație blocantă?
 
