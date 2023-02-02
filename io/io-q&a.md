@@ -173,7 +173,9 @@
 
 1. De ce subsistemul de networking nu folosește buffer cache-ul?
 
-   (nu știu aici)
+   Pentru că buffer cache-ul este un cache exclusiv pentru lucrul cu disk-ul.
+   Blocurile de date cele mai frecvent folosite sunt aduse în kernel space (în acest buffer) și accesate direct de aici, deoarece interacțiunea cu disk-ul este scumpă din punct de vedere al timpului (memoria persistentă e lentă).
+   Astfel, buffer cache-ul nu ar avea sens pentru subsistemul de networking care funcționează pe bază de pachet, ca unitate fundamentală de comunicare.
 
 1. Ce rol are apelul / comanda sync?
 
