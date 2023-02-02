@@ -310,7 +310,9 @@
 
    `join()`
 
-1. De ce este nevoie de apelul pthread_wait() / pthread_join()?
+1. De ce este nevoie de apelul wait() / pthread_join()?
+
+   Apelurile `wait()` / `pthread_join()` realizează eliberarea resurselor folosite de proces / thread după terminarea acestora.
 
 1. Ce tranziție între stările unui thread nu este posibilă?
 
