@@ -9,7 +9,7 @@
 
    Apelurie de sistem sunt necesare din două puncte de vedere:
 
-   * pentru a extinde funcționalitățile kernel-ului
+   * pentru a permite folosirea mai ușoară a funcționalităților kernel-ului
 
    * pentru separarea, protejarea, încapsularea kernel-ului de restul aplicațiilor, prin partiționarea pe ring-uri.
 
@@ -111,7 +111,9 @@
 
 1. Care este avantajul folosirii mașinilor virtuale din perspectiva securității?
 
-   Un attack de tip hyperjacking este foarte greu de aplicat.
+   * Poți testa tot felul de malware în interiorul mașinii virtuale fără a afecta (ușor) sistemul de operare host.
+
+   * Un attack de tip hyperjacking este foarte greu de aplicat.
 
 1. Ce este o bibliotecă statică? Ce este o bibliotecă dinamică?
 

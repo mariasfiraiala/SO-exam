@@ -148,7 +148,7 @@
 
 1. Ce secțiuni ale unui executabil se pot inspecta doar în timpul rulării?
 
-   Heap-ul și bibliotecile dinamice.
+   Stiva, heap-ul și bibliotecile dinamice.
 
 1. Care sunt zonele writable din spațiul de adrese al unui proces?
 
