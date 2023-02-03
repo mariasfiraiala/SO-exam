@@ -7,7 +7,7 @@
 ### 2. Ce reprezintă un descriptor de fișier?
 
    Descriptorul de fișier este un indice în tabela de file descriptors.
-   Ca intrare pentru un descriptor de fișiere este reținut un pointer către un open file structure.
+   Ca intrare pentru un descriptor de fișiere este reținut un pointer către un open channel structure.
 
 ### 3. Ce reprezintă tabele de descriptori de fișiere?
 

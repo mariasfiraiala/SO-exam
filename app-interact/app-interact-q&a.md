@@ -37,6 +37,8 @@
 ### 7. Care este limitarea folosirii pipe-urilor anonime?
 
    Pot întreține comunicarea doar între procese înrudite.
+   De asemenea, sunt dependente de procesele asociate.
+   Un pipe anonim este șters după terminarea procesului, spre deosebire de FIFO-uri care au un back-up în sistemul de fișiere virtual.
 
 ### 8. Care este diferența principală între FIFO și socket UNIX?
 
