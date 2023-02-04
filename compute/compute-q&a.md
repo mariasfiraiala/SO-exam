@@ -87,11 +87,11 @@
    O schimbare de context reprezintă schimbarea stării unui thread: marchează trecerea către și de la starea de RUNNING.
    O schimbare de context implică:
 
-      * salvarea stării thread-ului: punerea regiștrilor săi pe stivă, salvare IP-ului și SP-ului în TCB
+   * salvarea stării thread-ului: punerea regiștrilor săi pe stivă, salvare IP-ului și SP-ului în TCB
 
-      * introducerea handle-ului pentru TCB-ul thread-ului care pleacă de pe procesor în coada de READY sau BLOCKED, de la caz la caz
+   * introducerea handle-ului pentru TCB-ul thread-ului care pleacă de pe procesor în coada de READY sau BLOCKED, de la caz la caz
 
-      * pregătirea următorului thread care va rula: retragerea IP-ului său din TCB-ul aflat în coada de priorități, restaurarea stării regiștrilor săi
+   * pregătirea următorului thread care va rula: retragerea IP-ului său din TCB-ul aflat în coada de priorități, restaurarea stării regiștrilor săi
 
 ### 16. Ce cauzează schimbări de context?
 
@@ -209,9 +209,9 @@
 
    Da. Există mai multe variante:
 
-      * se reține într-o variabilă globală o adresă de stivă a altui thread (pentru thread-uri ale aceluiași proces)
+   * se reține într-o variabilă globală o adresă de stivă a altui thread (pentru thread-uri ale aceluiași proces)
 
-      * se iau adrese random, dacă adresa este validă totul merge bine, dacă nu, `SEGFAULT` (se merge la ghicit)
+   * se iau adrese random, dacă adresa este validă totul merge bine, dacă nu, `SEGFAULT` (se merge la ghicit)
 
 ### 34. De ce schimbarea de context între două thread-uri ale aceluiași proces este mai rapidă decât schimbarea de context între două thread-uri din procese diferite?
 
