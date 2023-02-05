@@ -5,6 +5,11 @@
    Apelul de sistem este un API expus de kernel pentru domain switch: trecerea din user space în kernel space.
    Asigură o metodă programatică prin care se cere un serviciu de la nucleu, precum interacțiunea cu I/O-ul, crearea de noi procese sau alocarea de memorie.
 
+<details>
+
+   [Further reading](https://www.guru99.com/system-call-operating-system.html)
+</details>
+
 ### 2. De ce sunt necesare apeluri de sistem?
 
    Apelurie de sistem sunt necesare din două puncte de vedere:
@@ -13,11 +18,21 @@
 
    * pentru separarea, protejarea, încapsularea kernel-ului de restul aplicațiilor, prin partiționarea pe ring-uri.
 
+<details>
+
+   [Further reading](https://www.ibm.com/docs/en/aix/7.2?topic=concepts-system-calls)
+</details>
+
 ### 3. Ce avantaj / dezavantaje au apelurile de sistem?
 
    Avantaj: Mențin kernel-ul izolat de restul aplicațiilor, rulând în mod privilegiat, permințând în același timp accesul optim la resursele hardware (pentru care există cerere mare din partea aplicațiilor).
 
    Dezavantaj: Overhead temporal.
+
+<details>
+
+   [Further reading](https://stackoverflow.com/questions/6424725/why-should-i-minimize-the-use-of-system-call-in-my-code)
+</details>
 
 ### 4. Ce înseamnă user/application mode/space (mod neprivilegiat)? Ce înseamnă kernel/supervisor mode/space (mod privilegiat)?
 
@@ -25,11 +40,23 @@
 
    Kernel space-ul este nivelul de privilegiu 0 (`CPL`/`CPSR` = 0), în care nucleul rulează, asigurându-se de împărțirea corectă a resurselor.
 
+<details>
+
+   [Further reading](https://stackoverflow.com/a/57926248)
+</details>
+
 ### 5. Cum se realizează tranziția din mod neprivilegiat în mod privilegiat?
 
    Tranziția se realizează prin API-ul pus la dispoziție de sistemul de operare (syscall API), chemat de aplicații prin wrapper-e de bibliotecă sau direct, prin inline asm.
 
+<details>
+
+   [Further reading](https://open-education-hub.github.io/operating-systems/Lab/Software-Stack/Basic%20System%20Calls/content/basic-syscall)
+</details>
+
 ### 6. Ce se întâmplă în momentul tranziției în mod privilegiat? Cum se/Cine asigură (enforcement) existența modului privilegiat?
+
+   Tranziția se realizează prin API-ul pus la dispoziție de sistemul de operare (syscall API), chemat de aplicații prin wrapper-e de bibliotecă sau direct, prin inline asm.
 
    * Se invocă un wrapper de bibliotecă;
 
@@ -51,9 +78,19 @@
    Enforcement-ul distincției dintre kernel space și user space este asigurat de modurile de privilegiu ale procesorului, marcate printr-un bit.
    Acesta este salvat în registrul `CPL` pe `x86` sau `CPSR` pe `ARM`.
 
+<details>
+
+   [Further reading](https://stackoverflow.com/questions/6424725/why-should-i-minimize-the-use-of-system-call-in-my-code)
+</details>
+
 ### 7. Ce este o bibliotecă?
 
    O bibliotecă este o colecție de obiecte.
+
+<details>
+
+   [Further reading](https://open-education-hub.github.io/operating-systems/Lab/Software-Stack/Libc/content/libc)
+</details>
 
 ### 8. Care este diferența dintre o aplicație și o bibliotecă?
 
@@ -61,18 +98,38 @@
    Cu alte cuvinte, biblioteca nu poate fi executată singură.
    O aplicație, da.
 
+<details>
+
+   [Further reading](https://stackoverflow.com/questions/1270729/difference-between-library-and-application-code)
+</details>
+
 ### 9. Care este asocierea apel de bibliotecă / apel de sistem?
 
    Asocierea dintre un apel de bibliotecă și un apel de sistem este aceea că un apel de bibliotecă poate rezulta într-un apel de sistem.
+
+<details>
+
+   [Further reading](https://open-education-hub.github.io/operating-systems/Lab/Software-Stack/Libcall-Syscall/content/libcall-syscall)
+</details>
 
 ### 10. Ce este entry point-ul într-un executabil?
 
    Entry-point-ul este prima instrucțiune care este pusă în IP la momentul lansării executabilului.
    Spre exemplu, pentru sintaxa NASM, entry-point-ul unui program este by default (pentru `ld` ca linker) simbolul `_start`.
 
+<details>
+
+   [Further reading](https://stackoverflow.com/a/29694977)
+</details>
+
 ### 11. Care este rolul bibliotecii standard C (libc)?
 
    `libc` oferă o suită de funcții, atât pentru folosirea integrală în user space (precum `strlen()`), cât și pentru interacțiunea cu kernel-ul (wrapper-e precum `printf()` sau `scanf()`).
+
+<details>
+
+   [Further reading](https://stackoverflow.com/questions/11372872/what-is-the-role-of-libcglibc-in-our-linux-app)
+</details> 
 
 ### 12. Ce acțiuni se pot executa doar în mod privilegiat?
 
@@ -84,22 +141,47 @@
 
    * Interacțiunea cu I/O-ul
 
+<details> 
+
+   [Further reading](https://www.geeksforgeeks.org/privileged-and-non-privileged-instructions-in-operating-system/)
+</details>
+
 ### 13. Ce operații / instrucțiuni low-level (ISA) se pot executa doar în mod privilegiat?
 
    Un exemplu este instrucțiunea `INT` (cheamă o întrerupere software).
    Un alt exemplu este `HLT` (oprește procesorul până la apariția unei întreruperi sau a unui semnal).
 
+<details>
+
+   [Further reading](https://sites.google.com/site/masumzh/articles/x86-architecture-basics/x86-architecture-basics?pli=1)
+</details>
+
 ### 14. Ce este un sistem de operare monolitic?
 
    Un sistem de operare monolitic este un sistem de operare în care management-ul sistemelor de fișiere, a memoriei, a device-urilor și a proceselor cade în atribuțiile kernel-ului.
+
+<details>
+
+   [Further reading](https://en.wikipedia.org/wiki/Monolithic_kernel)
+</details>
 
 ### 15. Ce este un sistem de operare de tip microkernel?
 
    Un sistem de operare microkernel este unul ale cărui componente (scheduler-e, sisteme de fișiere, stiva de rețea) rulează ca aplicații în user space.
 
+<details>
+
+   [Further reading](https://en.wikipedia.org/wiki/Microkernel)
+</details>
+
 ### 16. Care sunt avantajele unui sistem de operare monolitic?
 
    Performanța: toate componentele esențiale se află în același loc, iar comunicare cu hardware-ul este mediată prin syscall API.
+
+<details>
+
+   [Further Reading](https://www.geeksforgeeks.org/monolithic-kernel-and-key-differences-from-microkernel/)
+</details>
 
 ### 17. Care sunt avantajele unui sistem de operare de tip microkernel?
 
@@ -115,6 +197,11 @@
 
    * Un attack de tip hyperjacking este foarte greu de aplicat.
 
+<details>
+
+   [Further Reading](https://www.techtarget.com/searchsecurity/tip/Container-vs-VM-security-Which-is-better)
+</details>
+
 ### 20. Ce este o bibliotecă statică? Ce este o bibliotecă dinamică?
 
    O bibliotecă statică este una ale cărei simboluri sunt copiate direct în executabilul programului, la link time.
@@ -126,6 +213,11 @@
    Se preferă folosirea static linking pentru portabilitate, mai exact în cazul în care biblioteca nu există pe sistem, sau a fost modificată.
 
    Se preferă folosirea dynamic linking atunci când se dorește folosirea optimă a memoriei și a disk-ului, datorită mecanismului de shared library code și a executabilelor de mărime mică.
+
+<details>
+
+   [Further Reading](https://www.ibm.com/docs/en/aix/7.2?topic=techniques-when-use-dynamic-linking-static-linking)
+</details>
 
 ### 22. Dați exemplu de apel de sistem blocant.
 
@@ -156,9 +248,19 @@
    Double buffering se referă la prezența a două buffere: unul în user space și altul în kernel space.
    Apare adesea la funcții precum cele de read și write.
 
+<details>
+
+   [Further Reading](https://www.geeksforgeeks.org/double-buffering/)
+</details>
+
 ### 28. Ce se întâmplă când există o eroare critică (de tip Segmentation fault) la nivelul sistemului de operare?
 
-   Dacă în nucleu se ajunge la Segmentation Fault, atunci sistemul de operare intră în kernel panic. 
+   Dacă în nucleu se ajunge la Segmentation Fault, atunci sistemul de operare intră în kernel panic.
+
+<details>
+
+   [Further Reading](https://en.wikipedia.org/wiki/Kernel_panic)
+</details>
 
 ### 29. Dați exemplu de un apel de bibliotecă standard C care nu cauzează apel de sistem.
 
