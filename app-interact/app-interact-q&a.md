@@ -73,10 +73,11 @@
 
    Sincronizarea proceselor este mecanismul prin care asigurăm acces exclusiv: vom folosi mutex-uri (reținute în zone partajate de memorie) sau semafoare (mult mai ușor cu semafoare, pentru că putem folosi semafoare cu nume).
 
-### 16. De ce este nevoie de sincronizare la folosirea memoriei partajate dar nu la folosirea unui socket pentru comunicarea între două procese?
+### 16. De ce este nevoie de sincronizare la folosirea memoriei partajate, dar nu la folosirea unui socket pentru comunicarea între două procese?
 
-   Pentru că sincronizarea zonelor de memorie partajată este imposibil de asigurat de kernel.
-   Acesta, însă, garantează sincronizarea socket-urilor și a celorlalte tipuri de comunicare prin stream-uri.
+   Memoria partajată poate fi accesată simultan de mai multe procese, ceea ce poate duce la conflicte și probleme de integritate a datelor.
+   De aici și nevoia de sincronizare.
+   Comunicarea între două procese prin intermediul socket-ului este efectuată în mod natural sincronizat, pentru că transmisia de date are loc secvențial, ordonat.
 
 ### 17. Ce înseamnă aplicație omogenă? Dați un exemplu.
 

@@ -177,13 +177,18 @@
 
 ### 37. De ce subsistemul de networking nu folosește buffer cache-ul?
 
-   Pentru că buffer cache-ul este un cache exclusiv pentru lucrul cu disk-ul.
-   Blocurile de date cele mai frecvent folosite sunt aduse în kernel space (în acest buffer) și accesate direct de aici, deoarece interacțiunea cu disk-ul este scumpă din punct de vedere al timpului (memoria persistentă e lentă).
-   Astfel, buffer cache-ul nu ar avea sens pentru subsistemul de networking care funcționează pe bază de pachet, ca unitate fundamentală de comunicare.
+   Subsistemul de networking poate să se folosească de buffer cache, dar nu o face din motive de performanță.
+   
+   Buffer cache-ul este destinat gestionării ăi stocării datelor care (1) se află ăn procesare sau (2) sunt accesate frecvent, în memoria locală a unui sistem.
+   Subsistemul de rețea se ocupă cu transmisia de date între sisteme și poate gestiona un volum mare de date.
+   Este necesară o procesare mai rapidă decât cea oferită de cache, deci utilizarea acestuia nu ar avea sens.
 
 ### 38. Ce rol are apelul / comanda sync?
 
-   `sync()` realizează sincronizarea dintre buffer-ele din kernel space cu ceea ce rezidă pe disk.
+   `sync()` asigură integritatea datelor.
+   Forțează scrierea tuturor datelor modificate în buffere-le din kernel space, în mod sigur, pe disc.
+   
+   În alte cuvinte, sincronizează sistemul de fișiere cu un dispozitiv de stocare.
 
 ### 39. Care este rolul apelului ioctl / DeviceIoControl?
 
@@ -201,7 +206,7 @@
 
 ### 42. Ce se întâmplă dacă facem open de mai multe ori consecutiv pe același fișier?
 
-   Se va adăuga un nou file descriptor în FDT și se va crea un alt open file structure pentru fd-ul creat.
+   La fiecare apel de `open()`, se va adăuga un nou file descriptor în FDT și se va crea un alt open file structure pentru fd-ul creat.
 
 ### 43. Cum se modifica tabelul de file descriptori după open() si dup()? Este echivalent cu doua apeluri open()?
 
