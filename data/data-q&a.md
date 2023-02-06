@@ -7,12 +7,17 @@
 ### 2. Ce înseamnă mecanismul de memorie virtuală?
 
    Memoria virtuală este modalitatea prin care kernel-ul oferă proceselor impresia că dețin întreaga memorie, când lucrurile nu stau chiar așa.
-   Adresele de memorie virtuală ajung să fie corelate cu unele fizice de abia la acces, ceea ce permite împărțirea corectă a RAM-ului. 
+   Adresele de memorie virtuală ajung să fie corelate cu unele fizice de abia la acces, ceea ce permite împărțirea corectă a RAM-ului.
 
 ### 3. Ce reprezintă spațiul virtual de adrese al unui proces?
 
    Spatiul virtual de adrese este o înlănțuire de zone (segmente) folosită pentru a reține ce memorie procesul dorește să rezerve sau să elibereze.
    Conține tabela de pagini a procesului, care reține corespondența dintre adresele virtuale și cele fizice.
+
+<details>
+
+   [Further Reading](https://en.wikipedia.org/wiki/Virtual_address_space)
+</details>
 
 ### 4. Cu ce diferă zona de date de zona de cod în spațiul virtual de adrese al unui proces?
 
@@ -46,11 +51,21 @@
    MMU-ul (sau MTU pe `ARM`) are rolul de a translata adresa de memorie virtuală în fizică.
    El consultă PFN-ul, permisiunile și bitul de validitate pentru a determina ce face mai departe: generează un page fault major sau minor.
 
+<details>
+
+   [Further Reading](https://developer.arm.com/documentation/101811/0102/The-Memory-Management-Unit--MMU-)
+</details>
+
 ### 9. Ce rol are TLB?
 
    TLB-ul este un cache pentru intrările din tabela de pagini a procesului curent.
    Acesta reține PTE-uri folosite recent, și pentru fiecare adresă virtuală, verifică dacă are adresa fizică memorată.
    Dacă da, atunci are loc un TLB hit, altfel rezultă un TLB miss.
+
+<details>
+
+   [Further Reading](https://developer.arm.com/documentation/101811/0102/Translation-Lookaside-Buffer-maintenance)
+</details>
 
 ### 10. Care este ordinul de mărime al numărului de intrări ale TLB?
 
@@ -65,6 +80,11 @@
    Este o tabelă de pagini care ca și informație reține adrese ale altor tabele de pagini.
    Intrările ultimului nivel de tabele de pagini rețin informația legată de frame-uri.
    Primul nivel conține o singură tabelă de pagini și adresa acesteia este reținută în PTBR.
+
+<details>
+
+   [Further Reading](https://www.geeksforgeeks.org/multilevel-paging-in-operating-system/)
+</details>
 
 ### 13. Când are loc un TLB miss?
 
@@ -85,6 +105,11 @@
    Inițial, spațiul virtual de adrese al procesului copil point-ează către același spațiu fizic de adrese.
    Permisiunile sunt schimbate pe read only, și de abia la scriere, se duplică frame-urile, iar permisiunile sunt updatate.
 
+<details>
+
+   [Further Reading](https://en.wikipedia.org/wiki/Copy-on-write)
+</details>
+
 ### 17. Dați exemple de situații în care are loc mecanismul de copy-on-write.
 
    În management-ul memoriei virtuale: la `fork()`.
@@ -104,6 +129,11 @@
    Kernel-ul interceptează încercarea de a scrie pe o pagină marcată COW.
    Acesta alocă un nou frame (inițializat cu datele de pe pagina COW), face update la tabela de pagini cu noua corespondență și decrementează numărul de referințe către pagina COW care a cauzat intervenția sa.
 
+<details>
+
+   [Further Reading](https://lwn.net/Articles/849638/)
+</details>
+
 ### 21. Ce înseamnă demand paging?
 
    Demand paging este mecanismul prin care o pagină virtuală primește un corespondent fizic (un frame) de abia la momentul folosirii ei (la acces).
@@ -112,6 +142,11 @@
 
    La primul acces al unei pagini ce nu a fost încă map-ată.
    Aceasta este rezervată (apare în VAS), dar nu are încă asociată un frame.
+
+<details>
+
+   [Further Reading](https://www.kernel.org/doc/gorman/html/understand/understand007.html)
+</details>
 
 ### 23. Ce rol are spațiul de swap?
 
@@ -123,10 +158,20 @@
    
    Swap in are loc la un swap out.
 
+<details>
+
+   [Further Reading](https://www.geeksforgeeks.org/swapping-in-operating-system/)
+</details>
+
 ### 25. Care este rolul unui page fault? În ce condiții apare?
 
    Page fault-ul este o excepție ridicată de MMU, care apare atunci când un proces încearcă să acceseze o pagină fără a împlini anumite condiții preliminarii.
    Are rolul de a semnala shared memory, demand paging-ul sau un posibil acces invalid, împărțind-se în minor, major sau invalid.
+
+<details>
+
+   [Further Reading](https://en.wikipedia.org/wiki/Page_fault)
+</details>
 
 ### 26. Care sunt secțiunile/zonele din spațiul de adrese al unui proces?
 
@@ -187,6 +232,11 @@
    Fișierele map-ate în memorie prezintă un mecanism prin care procesele acesează fișiere prin incorporarea lor directă în VAS.
    Astfel, se reduce în mod semnificativ I/O data movement (și overhead-ul temporal), întrucât datele fișierului nu mai trebuie copiate în buffer-ele procesului așa cum s-ar întâmpla în cazul funcțiilor `read()` și `write()`.
 
+<details>
+
+   [Further Reading](https://www.ibm.com/docs/en/aix/7.2?topic=memory-understanding-mapping)
+</details>
+
 ### 37. Câte page fault-uri se pot obține în cazul operației *a = b?
 
    3: unul pentru dereferențiere, unul pentru pointer, unul pentru operația în sine, dacă nu a fost map-ată pagina de .text aferentă.
@@ -204,6 +254,11 @@
    În timpul fazei de loading, sistemul de operare citește executabilul de pe disk și map-ează părți din el în RAM.
    Tot acum se translatează adresele logice în adrese fizice.
 
+<details>
+
+   [Further Reading](https://en.wikipedia.org/wiki/Loader_(computing))
+</details>
+
 ### 41. Ce înseamnă deturnarea fluxului de execuție a unui program (control flow hijack)? De ce este acest lucru relevant pentru un atacator?
 
    Cotrol-flow hijack este un tip de atac care urmărește schimbarea flow-ului normal al aplicației (injectarea IP/PC), și executarea de cod fraudulos prin vulnerabilități precum buffer overflow, index out of bounds, integer overflow sau string formatting.
@@ -217,6 +272,11 @@
 ### 43. De ce în general, preferăm o împărțire a spațiului virtual de adrese între kernel space și user space? Și nu un spațiu dedicat pentru kernel space?
 
    Pentru că kernel space-ul este la rândul lui specific fiecărui proces, iar separarea celor două spații asigură protecția memoriei și a hardware-ului împotriva software-ului malițios sau eronat.
+
+<details>
+
+   [Further Reading](https://unix.stackexchange.com/questions/472223/whats-the-use-of-having-a-kernel-part-in-the-virtual-memory-space-of-linux-proc)
+</details>
 
 ### 44. Ce secvență de cod C va duce la o excepție de acces la memorie (de tip Segmentation fault)? De ce?
 
@@ -239,6 +299,11 @@
 
    În general, memoria virtuală este mai mare sau egală cu cea fizică.
    Totuși, în anumite scenarii, memoria fizică poate fi mai mare decât cea virtuală (Intel 32-bit cu PAE).
+
+<details>
+
+   [Further Reading](https://stackoverflow.com/a/26424819)
+</details>
 
 ### 48. Ce zone de memorie se aloca static? Dar dinamic?
 
