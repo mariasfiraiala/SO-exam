@@ -7,10 +7,20 @@
 
    Nevoia de procese mai e dată de faptul că pe un sistem se dorește executarea mai multor acțiuni, consolidarea mai multor aplicații.
 
+<details>
+   
+   [Further Reading](https://docs.google.com/document/d/1ZneG6oNqbbzEWLA6QwODLyYvHzdFj2OJ79Xka7QkkSs/edit#heading=h.v2p2vab8hzh2)
+</details>
+
 ### 2. De ce este nevoie de thread-uri?
 
    Thread-ul reprezintă unitatea fundamentală planificabilă, mai multe thread-uri putând face parte din același proces.
    El apare ca urmare a necesității de a paraleliza, în general, fiind utilizat omogen, pentru acțiuni identice, realizate simultan.
+
+<details>
+
+   [Further Reading](https://www.ibm.com/docs/sv/aix/7.1?topic=programming-benefits-threads)
+</details>
 
 ### 3. Ce este un proces?
 
@@ -31,9 +41,19 @@
 
    4. Overhead: Thread-urile sunt mai lightweight și pot fi planificate mai ușor, de asemenea, ele sunt mai rapide prin timpul de creare și cel de context switch.
 
+<details>
+
+   [Further Reading](https://www.geeksforgeeks.org/difference-between-process-and-thread/)
+</details>
+
 ### 6. Cum este afectat spațiul virtual de adrese al unui proces în momentul creării unui thread?
 
    Spațiul virtual de adrese al procesului primește o nouă zonă de memorie, pentru stiva noului thread.
+
+<details>
+
+   [Further Reading](https://stackoverflow.com/questions/38555287/how-memory-management-happens-for-process-threads-in-one-virtual-address-space)
+</details>
 
 ### 7. Ce zone de memorie au comune thread-urile unui proces și ce zone au specifice?
 
@@ -43,6 +63,11 @@
 ### 8. Ce conține PCB (Process Control Block)?
 
    SP-ul, starea procesului, PID-ul, IP-ul, regiștrii, PT, FDT. 
+
+<details>
+
+   [Further Reading](https://www.cs.auckland.ac.nz/courses/compsci340s2c/lectures/lecture06.pdf)
+</details>
 
 ### 9. Care sunt stările în care se poate găsi un thread?
 
@@ -56,9 +81,19 @@
 
    * TERMINATED
 
+<details>
+
+   [Further Reading](https://docs.google.com/document/d/1Um_iOiKEeKAPP0xjr8fXFbpPx3_wBdJZtjqWinqmbqs/edit#heading=h.7sfnwfm7vsop)
+</details>
+
 ### 10. Ce efect are apelul fork()?
 
    `fork()` creează un proces copil, se întoarce de două ori (o dată în părinte cu PID-ul copilului, și o dată în copil cu valoarea 0) și este asociat cu mecanismul de copy-on-write.
+
+<details>
+
+   [Further Reading](https://www.geeksforgeeks.org/fork-system-call/)
+</details>
 
 ### 11. Ce resurse partajează/nu partajează procesul părinte și procesul copil în cazul apelului fork()?
 
@@ -69,6 +104,11 @@
 ### 12. Cum modifica fork() si exec() spațiul virtual de adrese?
 
    Atât `fork()` cât și `exec()` creează un spațiu nou de adrese, diferența dintre cele fiind aceea că `fork()` creează un nou spațiu de adrese pentru procesul copil, pe când `exec()` golește spațiul virtual de adrese al procesului curent (mai puțin partea de kernel space) și regiștrii și pregătește pentru a rula noul program.
+
+<details>
+
+   [Further Reading](https://stackoverflow.com/a/1653415)
+</details>
 
 ### 13. Ce efect are apelul exec()?
 
@@ -92,6 +132,11 @@
    * introducerea handle-ului pentru TCB-ul thread-ului care pleacă de pe procesor în coada de READY sau BLOCKED, de la caz la caz
 
    * pregătirea următorului thread care va rula: retragerea IP-ului său din TCB-ul aflat în coada de priorități, restaurarea stării regiștrilor săi
+
+<details>
+
+   [Further Reading](https://stackoverflow.com/questions/7439608/steps-in-context-switching)
+</details>
 
 ### 16. Ce cauzează schimbări de context?
 
@@ -123,6 +168,11 @@
 
    Cu toate astea, kernel level threads sunt ușor paralelizabile și au implementări de bibliotecă în limbaje precum C (pthread).
 
+<details>
+
+   [Further Reading](https://www.geeksforgeeks.org/difference-between-user-level-thread-and-kernel-level-thread/)4
+</details>
+
 ### 19. În ce situație este utilă zona TLS (thread local storage)?
 
    TLS este utilă atunci când dorim să avem variabile statice/globale vizibile pentru toate funcțiile thread-ului, dar locale lui.
@@ -142,6 +192,11 @@
    Deadlock-ul este rezultatul acțiunii prin care două thread-uri așteaptă ceva din partea unui altuia.
    Cu alte cuvinte, thread-urile depind unul de altul și nu își pot continua execuția deoarece niciunul dintre ele nu poate ieși din loop.
 
+<details>
+
+   [Further Reading](https://www.baeldung.com/cs/deadlock-livelock-starvation)
+</details>
+
 ### 23. Care sunt dezavantajele sincronizării?
 
    * greu de implementat dacă programatorul nu este experimentat
@@ -159,6 +214,11 @@
 ### 24. Ce înseamnă TOCTOU (time of check to time of use)?
 
    Se referă la un race condition care apare imediat după un compare, înainte de a se face instrucțiunea următoare (de folosire), când un alt thread apare și modifică valoarea considerată "safe".
+
+<details>
+
+   [Further Reading](https://en.wikipedia.org/wiki/Time-of-check_to_time-of-use)
+</details>
 
 ### 25. Când se blochează un producător în problema producator-consumator? Dar un consumator?
 
@@ -179,6 +239,11 @@
 
    Mutex-urile sunt o formă de sincronizare care funcționează prin context switch, și ocazional apel de sistem (chemarea scheduler-ului la `lock()` și `unlock`).
    Sunt folosite în toate celelalte cazuri în care spinlock-ul nu este viabil: apeluri blocante, zone critice mari
+
+<details>
+
+   [Further Reading](https://www.geeksforgeeks.org/mutex-vs-semaphore/)
+</details>
 
 ### 28. Ce efect are folosirea operatorului & din shell în crearea unui proces?
 
@@ -213,6 +278,11 @@
 
    * se iau adrese random, dacă adresa este validă totul merge bine, dacă nu, `SEGFAULT` (se merge la ghicit)
 
+<details>
+
+   [Further Reading](https://leetcode.com/discuss/interview-question/operating-system/124628/Can-a-posix-thread-modify-another-thread's-stack-variable-within-the-same-program/236079)
+</details>
+
 ### 34. De ce schimbarea de context între două thread-uri ale aceluiași proces este mai rapidă decât schimbarea de context între două thread-uri din procese diferite?
 
    Pentru că thread-urile aceluiași proces share-uiesc majoritatea VAS-ului procesului, iar flush-ul TLB-ului nu este necesar.
@@ -226,9 +296,19 @@
    Numărul maxim de intrări în tabela de procese.
    De obicei un număr fix setat de sistemul de operare.
 
+<details>
+
+   [Further Reading](https://unix.stackexchange.com/questions/124040/how-to-determine-the-max-user-process-value)
+</details>
+
 ### 37. Ce se întâmplă când toate procesele sistemului sunt blocate?
 
    Apare un proces IDLE care rulează în mod nedefinit (prin busy waiting) până un alt proces este pregătit să intre pe procesor.
+
+<details>
+
+   [Further Reading](https://stackoverflow.com/questions/14315923/why-does-linux-kernel-need-idle-thread)
+</details>
 
 ### 38. Ce înseamnă waiting time (timp de așteptare) în planificarea proceselor?
 
@@ -264,6 +344,11 @@
    Procesele I/O intensive sunt prioritare: ele, în mod garantat, fac multe apeluri blocante și ajung voluntar în BLOCKED, nu au tendința de a acapara CPU-ul.
 
    Pe de altă parte, procesele CPU intensive nu sunt favoritele scheduler-ului: au tendința de a ajunge CPU hogs, de aceea, ele primesc o quantă mai mică, pentru a menține wainting time-ul mic și eficiența împărțirii resurselor.
+
+<details>
+
+   [Further Reading](https://www.baeldung.com/cs/cpu-io-bound)
+</details>
 
 ### 44. Două thread-uri ale unui proces execută aceeași funcție. Care sunt diferențele între cele două thread-uri?
 
@@ -301,6 +386,11 @@
 
    Prefixul LOCK anunță sistemul de operare să facă un lock hardware pe magistrală.
    Un singur core mai are acces, astfel, la memorie, iar operația atomică poate avea loc.
+
+<details>
+
+   [Further Reading](https://stackoverflow.com/a/8891781)
+</details>
 
 ### 52. Care este avantajul folosirii mutexurilor în defavoarea spinlockurilor și invers?
 
