@@ -49,10 +49,20 @@
    Un sistem de fișiere virtual este o interfață abstractă pe care sistemul de operare o expune către sistemele de fișiere tradiționale (ext3, VFAT, FreeBSD).
    Astfel, diferențele de implementare interne fiecărui astfel de sistem de fișiere nu devin o problemă, iar kernelul dobândește o modalitate de comunicare facilă cu multiple sisteme de fișiere simultan.
 
+<details>
+
+   [Further Reading](https://en.wikipedia.org/wiki/Virtual_file_system)
+</details>
+
 ### 12. Ce este un dispozitiv virtual?
 
    Un dispozitiv virtual mimează existența unui dispozitiv hardware fizic, acesta fiind, însă, o simplă intrare în sistemul de fișiere și neavând niciun backup fizic în spate.
    Un astfel de dispozitiv virtual este creat cu apelul `mknod`.
+
+<details>
+
+   [Further Reading](https://en.wikipedia.org/wiki/Virtual_device)
+</details>
 
 ### 13. Ce tipuri de dispozitive cunoașteți? Clasificați-le din orice punct de vedere cunoașteți.
 
@@ -67,6 +77,11 @@
    1. char devices: pentru char devices nu se face buffering; read și write există ca funcții și sunt blocante; au un driver mai simplu, pentru ca sunt de tip stream și nu au de reținut decât o singură poziție (cea curentă).
 
    2. block devices: block devices sunt accesate prin cache; read și write sunt asincrone; au un driver complicat, pentru că acesta trebuie să treacă prin buffer cache pentru a scrie și citi.
+
+<details>
+
+   [Further Reading](https://tldp.org/LDP/khg/HyperNews/get/devices/basics.html)
+</details>
 
 ### 15. De ce nu are sens operația de seek pe un dispozitiv de tip caracter?
 
@@ -116,6 +131,11 @@
    O operație neblocantă este caracterizată de faptul că se întoarce imediat, indiferent dacă a finalizat acțiunea sau nu.
    Spre exemplu, un `read()` neblocant ar citi direct (dacă ar avea ce) sau s-ar întoarce cu un mesaj de eroare special, care anunță faptul că nu și-a dus la bun sfârșit task-ul, pentru că s-ar fi blocat. 
 
+<details>
+
+   [Further Reading](https://www.geeksforgeeks.org/blocking-and-nonblocking-io-in-operating-system/)
+</details>
+
 ### 25. Ce întoarce o operație asincronă?
 
    Operațiile asincrone nu întorc date, ci un cod de eroare, 0 sau 1.
@@ -130,6 +150,11 @@
    Socket-ul de rețea este folosit pentru comunicarea proceselor de pe sisteme diferite.
    Socket-ul UNIX este o formă de comunicare între procese aflate pe același sistem.
 
+<details>
+
+   [Further Reading](https://stackoverflow.com/questions/22897972/unix-vs-bsd-vs-tcp-vs-internet-sockets)
+</details>
+
 ### 28. Care este diferența între un pipe anonim și un pipe cu nume (named pipe)?
 
    Pipe-ul cu nume permite comunicarea între două procese neînrudite, pe când prin pipe-ul anonim se poate transmite informație doar între procese înrudite.
@@ -139,6 +164,11 @@
 
    Buffer cache-ul este un buffer de blocuri aflat în kernel space.
    Acesta reține blocurile de date folosite recent, pentru a scădea numărul de interacțiuni cu disk-ul, o componentă extrem de lentă față de memorie.
+
+<details>
+
+   [Further Reading](https://www.oreilly.com/library/view/understanding-the-linux/0596002130/ch14s02.html)
+</details>
 
 ### 30. De ce operația write pe fișiere este foarte rar blocantă?
 
@@ -155,10 +185,20 @@
    Device driver-ul este o bucată de software folosită pentru a controla diferite componente hardware.
    Are rolul de a permite sistemului de operare să se folosească de periferice.
 
+<details>
+
+   [Further Reading](https://en.wikipedia.org/wiki/Device_driver)
+</details>
+
 ### 33. Ce rol are controller-ul hardware?
 
    Controlează componentele hardware (are rol de administrator).
    Este la rândul său o componentă hardware care permite transmiterea, flow-ul de date, între mai multe entități fizice.
+
+<details>
+
+   [Further Reading](https://www.techtarget.com/whatis/definition/controller)
+</details>
 
 ### 34. Ce înseamnă zero-copy? Ce mecanism/apel folosește zero-copy?
 
@@ -167,6 +207,11 @@
 
    Apeluri folosite pentru zero-copy sunt `sendfile()`, `splice()` (UNIX), `TransmitFile` (Windows).
 
+<details>
+
+   [Further Reading](https://open-education-hub.github.io/operating-systems/Lab/I/O/Zero-Copy/content/zero-copy)
+</details>
+
 ### 35. Ce garanții ni se oferă în momentul în care apelul send() se întoarce în user space?
 
    Că datele în întregime sau doar o parte  (de aceea `send()` trebuie făcut într-un loop pentru a asigura că s-au trimis toate datele) au fost copiate într-un buffer de send.
@@ -174,6 +219,11 @@
 ### 36. Cu ce diferă afișarea folosind printf() față de folosirea write()?
 
    `printf()` spre deosebire de apelul de sistem `write()`, este (line) buffered, în sensul în care menține un buffer în user space care va fi flush-uit și trimis spre kernel mai rar (la endline, la apel explicit de flush, la închiderea descriptorului sau când bufferul din user space s-a umplut).
+
+<details>
+
+   [Further Reading](https://stackoverflow.com/questions/1716296/why-does-printf-not-flush-after-the-call-unless-a-newline-is-in-the-format-strin)
+</details>
 
 ### 37. De ce subsistemul de networking nu folosește buffer cache-ul?
 
@@ -195,6 +245,11 @@
    `ioctl()` este un apel de sistem ce se ocupă cu comunicarea dintre aplicații și device driver-e.
    El poate fi folosit pentru mai multe tipuri de fișiere, precum char/block devices, sockets, în general tot ceea ce are un file descriptor.
 
+<details>
+
+   [Further Reading](https://github.com/open-education-hub/operating-systems/blame/master/content/chapters/io/lecture/slides/devices.md#L107)
+</details>
+
 ### 40. De ce în general doar utilizatorul root are permisiuni de scriere (uneori doar root are permisiuni de citire) pe intrările din /dev?
 
    Pentru că interacționarea cu device-urile hardware se face privilegiat.
@@ -204,9 +259,19 @@
 
    `fwrite()` fiind buffered, devine mai rapid la mai multe scrieri: acesta le va combina pe toate într-un singur mare apel de sistem, în loc să facă pentru fiecare acțiune de scriere un syscall separat.
 
+<details>
+
+   [Further Reading](https://itecnote.com/tecnote/linux-why-the-fwrite-libc-function-is-faster-than-the-syscall-write-function/)
+</details>
+
 ### 42. Ce se întâmplă dacă facem open de mai multe ori consecutiv pe același fișier?
 
    La fiecare apel de `open()`, se va adăuga un nou file descriptor în FDT și se va crea un alt open file structure pentru fd-ul creat.
+
+<details>
+
+   [Further Reading](https://stackoverflow.com/a/51750060)
+</details>
 
 ### 43. Cum se modifica tabelul de file descriptori după open() si dup()? Este echivalent cu doua apeluri open()?
 
