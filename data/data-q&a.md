@@ -239,11 +239,11 @@
 
 ### 37. Câte page fault-uri se pot obține în cazul operației *a = b?
 
-   3: unul pentru dereferențiere, unul pentru pointer, unul pentru operația în sine, dacă nu a fost map-ată pagina de .text aferentă.
+   4: unul pentru dereferențiere, unul pentru a, unul pentru operația în sine, dacă nu a fost map-ată pagina de .text aferentă și unul pentru b.
 
 ### 38. Care este numărul maxim de page fault-uri pe care îl poate genera expresia a = b + c?
 
-   1: pentru pentru operația în sine, dacă nu a fost map-ată pagina de .text aferentă.
+   5: unul pentru a, unul pentru pentru operația de atribuire în sine, dacă nu a fost map-ată pagina de .text aferentă, unul pentru b, unul pentru c, unul pentru operația de adunare, dacă nu a fost map-ată pagina de .text aferentă.
 
 ### 39. Ce informații sunt reținute în stivă? Ce variabile C?
 
