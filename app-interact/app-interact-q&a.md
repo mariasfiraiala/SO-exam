@@ -13,6 +13,11 @@
    Semnalul este un mesaj trimis asincron proceselor pentru a declanșa un anumit comportament.
    La primirea semnalului este rulat un handler specific care tratează eroarea, întrerupe, suspendă sau omoară procesul.
 
+<details>
+
+   [Further Reading](https://faculty.cs.niu.edu/~hutchins/csci480/signals.htm)
+</details>
+
 ### 3. Cine trimite un semnal unui proces?
 
    Sistemul de operare, alt proces sau chiar el însuși.
@@ -22,11 +27,21 @@
    `|` este implementat similar cu `pipe()` din C: este folosit un buffer comun în care primul proces trimite informație, iar cel de-al doilea o primește.
    Cele două capete ale buffer-ului corespund celor două procese care comunică.
 
+<details>
+
+   [Further Reading](https://toroid.org/unix-pipe-implementation)
+</details>
+
 ### 5. Care sunt avantajele și dezavantajele folosirii memoriei partajate pentru comunicarea inter-proces?
 
    Avantaje: mai rapidă decât orice alt tip de comunicare, ieftină ca memorie, este evitată folosirea și copierea între multiple buffer-e.
 
    Dezavantaje: sincronizarea trebuie făcută "de mână" de către programator.
+
+<details>
+
+   [Further Reading](https://www.cs.yale.edu/homes/aspnes/pinewiki/InterProcessCommunication.html)
+</details>
 
 ### 6. Care sunt avantajele și dezavantajele pipe-urilor pentru comunicarea inter-proces?
 
@@ -64,6 +79,11 @@
 
    Două procese neînrudite pot folosi același semafor anonim dacă acesta este plasat într-o zonă de memorie pe care procesele o share-uiesc.
 
+<details>
+
+   [Further Reading](https://stackoverflow.com/a/32207582)
+</details>
+
 ### 14. Ce rol are apelul mmap() în cazul partajării memoriei între două procese?
 
    `mmap()` (prin folosirea flag-ului `MAP_ANONYMOUS|MAP_SHARED`) creează zone de memorie anonime ce pot fi folosite de procese înrudite.
@@ -86,12 +106,22 @@
 
    ex: multi-threaded web servers, `libx264` din `ffmpeg` (thread-uri), paginile de browser din firefox (thread-uri), paginile de browser din chrome (procese).
 
+<details>
+
+   [Further Reading](https://github.com/open-education-hub/operating-systems/blob/master/content/chapters/app-interact/lecture/slides/classification.md#single-process-multi-threaded-homogeneous)
+</details>
+
 ### 18. Ce înseamnă aplicație eterogenă? Dați un exemplu.
 
    O aplicație eterogenă folosește thread-uri/procese pentru a realiza tipuri diferite de acțiuni concomitent ("Multiple threads/processes, each doing different work").
    De obicei, astfel de aplicații dau dovadă de interacțiune bogată între thread-uri/procese, sunt folosite mecanisme de IPC.
 
    ex: postfix, gitlab.
+
+<details>
+
+   [Further Reading](https://github.com/open-education-hub/operating-systems/blob/master/content/chapters/app-interact/lecture/slides/classification.md#multi-process-heterogeneous)
+</details>
 
 ### 19. Care este avantajul și dezavantajul distribuirii unei aplicații pe mai multe sisteme?
 
@@ -125,6 +155,11 @@
     fd = open("/dev/zero", O_RDWR);   
     addr = mmap(NULL, length, PROT_READ | PROT_WRITE, MAP_PRIVATE, fd, 0);
    ```
+
+<details>
+
+   [Further Reading](https://stackoverflow.com/a/39945292)
+</details>
 
 ### 22. Ce mecanism de interacțiune între aplicații au un buffer și ce mecanisme de interacțiune nu au un buffer?
 
