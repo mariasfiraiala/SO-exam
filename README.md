@@ -12,6 +12,10 @@ The questions are sorted into the 5 main categories of the course:
 
 - [Application Interaction](https://open-education-hub.github.io/operating-systems/Application-Interaction/)
 
+You'll also find a section with questions from the old exam:
+
+- [Extra](https://github.com/mariasfiraiala/SO-exam/blob/master/extra/extra-q%26a.md)
+
 **Note:** These questions are just starters for the Operating Systems exam questions, which can be extended or derived during the actual exam.
 
 New contributors are welcomed!
