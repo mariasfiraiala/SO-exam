@@ -85,7 +85,7 @@
 
 ### 7. Ce este o bibliotecă?
 
-   O bibliotecă este o colecție de obiecte.
+   O bibliotecă este o colecție de fișiere obiect.
 
 <details>
 
