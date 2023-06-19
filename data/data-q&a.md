@@ -225,7 +225,7 @@
 
 ### 35. Câte pagini fizice alocă un apel calloc() care alocă 1MB? O pagină ocupă 4KB.
 
-   Cel puțin 250, cel mult 251.
+   Cel puțin 256, cel mult 257.
 
 ### 36. Ce înseamnă maparea unui fișier în memorie? De ce este avantajos să mapăm fișiere față de folosirea read/write?
 
